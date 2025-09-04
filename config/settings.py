@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'health_check',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

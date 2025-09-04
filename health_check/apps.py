@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class HeathCheckConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'heath_check'
+    name = 'health_check'

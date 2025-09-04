@@ -1,3 +1,8 @@
+from django.utils.timezone import now
+from django.template.response import TemplateResponse
+from django.urls import path
+
+from .models import Endpoint, HealthCheckResult
 from django.contrib import admin
 
 from health_check.models import Endpoint, HealthCheckResult
@@ -15,8 +20,14 @@ class EndpointAdmin(admin.ModelAdmin):
 
 @admin.register(HealthCheckResult)
 class HealthCheckResultAdmin(admin.ModelAdmin):
-    list_display = ('endpoint', 'status_code', 'is_up',
-                    'response_time', 'checked_at')
-    list_filter = ('is_up', 'checked_at')
-    search_fields = ('endpoint__name', 'endpoint__url', 'error_message')
+    list_display = (
+        'endpoint', 'status_code', 'response_time', 'is_up', 'checked_at', 'error_message'
+    )
+    list_filter = ('is_up', 'status_code', 'checked_at')
+    search_fields = ('endpoint__name', 'error_message')
+    readonly_fields = ('endpoint', 'status_code', 'response_time',
+                       'is_up', 'checked_at', 'error_message')
     ordering = ('-checked_at',)
+
+
+

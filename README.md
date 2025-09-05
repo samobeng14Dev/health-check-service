@@ -55,10 +55,25 @@ open python shell -- python manage.py shell
 2. Visit `http://127.0.0.1:8000/admin/`
 3. Log in with your credentials
 
+## NB
+Initially, both Swagger and the admin UI shows no results unless you manually trigger health checks via shell.
+This is due to the view relying on previously saved results without automatically running fresh checks.
 
-Add endpoints to monitor in the Endpoints section.
+Run the code below to handle that: 
+from health_check.services import check_all_active_endpoints
+results = check_all_active_endpoints()
+print(results)
 
-Configure each endpoint with a name and URL.
+
+
+---
+
+
+## Django Admin Setup
+1. Add endpoints to monitor in the Endpoints section.
+2. Configure each endpoint with a name and URL.
+3. Select Run health check for selected endpoints and click Go
+4. Navigate to Health check section to see your checks
 
 ## 📡 API Usage
 GET http://127.0.0.1:8000/health/v1/health/
@@ -90,6 +105,7 @@ GET http://127.0.0.1:8000/health/v1/health/
     }
   ]
 }
+
 
 
 

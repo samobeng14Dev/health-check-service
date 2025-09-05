@@ -25,7 +25,7 @@ This service provides a robust health checking system that monitors multiple ext
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/samobeng14Dev/health-check-service
 cd health_check_service
 
 ---
@@ -46,14 +46,22 @@ python manage.py runserver
 
 ##⚙️ Configuration
 Access the Swagger UI at http://localhost:8000/
-Access the Django admin panel at http://localhost:8000/admin/
+## 🔐 Admin Access
+
+To access the Django admin panel:
+open python shell -- python manage.py shell
+
+1. Run `python manage.py createsuperuser` and complete the steps
+2. Visit `http://127.0.0.1:8000/admin/`
+3. Log in with your credentials
+
 
 Add endpoints to monitor in the Endpoints section.
 
 Configure each endpoint with a name and URL.
 
 ## 📡 API Usage
-GET /health/
+GET http://127.0.0.1:8000/health/v1/health/
 
 # Response
 {
@@ -82,5 +90,6 @@ GET /health/
     }
   ]
 }
+
 
 

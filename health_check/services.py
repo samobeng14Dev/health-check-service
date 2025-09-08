@@ -42,25 +42,4 @@ def check_all_active_endpoints():
     return results
 
 
-# Utility function to run health check for a specific endpoint
-def run_health_check_for_endpoint(endpoint):
-    start = time.time()
-    try:
-        response = requests.get(endpoint.url, timeout=5)
-        response_time = time.time() - start
-        HealthCheckResult.objects.create(
-            endpoint=endpoint,
-            status_code=response.status_code,
-            response_time=response_time,
-            is_up=response.status_code == 200,
-            error_message=None,
-        )
-    except Exception as e:
-        response_time = time.time() - start
-        HealthCheckResult.objects.create(
-            endpoint=endpoint,
-            status_code=None,
-            response_time=response_time,
-            is_up=False,
-            error_message=str(e),
-        )
+
